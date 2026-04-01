@@ -4,6 +4,7 @@ const  productcontroller  = require('./src/controller/product.controller');
 const ejsLayouts = require('express-ejs-layouts');
 const app = express();
 app.use(express.urlencoded({extended:true}))
+app.use(express.json());
 app.set("view engine" ,"ejs")
 app.set("views", path.join(path.resolve(), 'src', 'views'));
 const obj =new productcontroller();
