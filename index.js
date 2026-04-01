@@ -1,7 +1,9 @@
 const express =require('express');
 const path =require('path')
 const  productcontroller  = require('./src/controller/product.controller');
+
 const ejsLayouts = require('express-ejs-layouts');
+const { Validationmiddle } = require('./src/Middleware/Validation.middleware');
 const app = express();
 app.use(express.urlencoded({extended:true}))
 app.use(express.json());
@@ -12,7 +14,7 @@ const obj =new productcontroller();
 
 app.get('/',obj.getProducts)
 app.get('/Adddata',obj.getAddForm)
-app.post('/',obj.uploaddata)
+app.post('/', Validationmiddle ,obj.uploaddata)
 app.use(express.static('src/views')) 
 
 
